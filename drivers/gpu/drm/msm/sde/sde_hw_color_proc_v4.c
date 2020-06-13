@@ -10,6 +10,7 @@
  * GNU General Public License for more details.
  */
 #include <drm/msm_drm_pp.h>
+#include <dsi_panel.h>
 #include "sde_hw_color_proc_common_v4.h"
 #include "sde_hw_color_proc_v4.h"
 
@@ -212,6 +213,21 @@ void sde_setup_dspp_pccv4(struct sde_hw_dspp *ctx, void *cfg)
 	if (!ctx || !cfg) {
 		DRM_ERROR("invalid param ctx %pK cfg %pK\n", ctx, cfg);
 		return;
+	}
+
+	// KCAL values can't be less than 20
+	kcal_red = max(kcal_red, 20);
+	kcal_green = max(kcal_green, 20);
+	kcal_blue = max(kcal_blue, 20);
+
+	// Prevent image retention on nt36672a tianma panel
+	// Keep RGB <= 230 always
+	// Ref: https://forum.xda-developers.com/-/-t4075133
+	if (is_tianma_panel()) {
+		DRM_INFO_ONCE("KCAL: tianma panel detected - limiting RGB to 230\n");
+		kcal_red = min(kcal_red, 230);
+		kcal_green = min(kcal_green, 230);
+		kcal_blue = min(kcal_blue, 230);
 	}
 
 	if (!hw_cfg->payload) {
