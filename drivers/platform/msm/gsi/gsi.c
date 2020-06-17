@@ -2708,7 +2708,6 @@ int gsi_write_wdi3_channel_scratch2_reg(unsigned long chan_hdl,
 
 	return GSI_STATUS_SUCCESS;
 }
-EXPORT_SYMBOL(gsi_write_wdi3_channel_scratch2_reg);
 
 
 int gsi_read_channel_scratch(unsigned long chan_hdl,
@@ -2774,7 +2773,6 @@ int gsi_read_wdi3_channel_scratch2_reg(unsigned long chan_hdl,
 
 	return GSI_STATUS_SUCCESS;
 }
-EXPORT_SYMBOL(gsi_read_wdi3_channel_scratch2_reg);
 
 
 int gsi_update_mhi_channel_scratch(unsigned long chan_hdl,
@@ -2848,7 +2846,6 @@ int gsi_pending_irq_type(void)
 	return gsi_readl(gsi_ctx->base +
 		GSI_EE_n_CNTXT_TYPE_IRQ_OFFS(ee));
 }
-EXPORT_SYMBOL(gsi_pending_irq_type);
 
 int gsi_start_channel(unsigned long chan_hdl)
 {
