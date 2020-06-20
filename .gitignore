@@ -37,10 +37,13 @@
 *.so.dbg
 *.su
 *.symtypes
+*.txt
 *.tar
 *.xz
+b
 Module.symvers
 modules.builtin
+wg
 
 #
 # Top-level generic files
@@ -54,6 +57,7 @@ modules.builtin
 /vmlinuz
 /System.map
 /Module.markers
+/out
 
 #
 # RPM spec file (make rpm-pkg)
